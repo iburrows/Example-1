@@ -12,14 +12,14 @@ namespace Example_1_Server.TheServer
 {
     public class Server:ViewModelBase
     {
-        Socket serverSocket;
-        Thread acceptingThread;
-        Action<string> GuiUpdater;
-        List<Clients> theClients = new List<Clients>();
+        private Socket serverSocket;
+        private Thread acceptingThread;
+        private Action<string> GuiUpdater;
+        private List<Clients> theClients = new List<Clients>();
 
         public Server(string ip, int port, Action<string> guiUpdater)
         {
-            GuiUpdater = guiUpdater;
+            this.GuiUpdater = guiUpdater;
             serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             serverSocket.Bind(new IPEndPoint(IPAddress.Parse(ip), port));
             serverSocket.Listen(5);
@@ -38,7 +38,8 @@ namespace Example_1_Server.TheServer
             {
                 try
                 {
-                    theClients.Add(new Clients(serverSocket.Accept(), new Action<string, Socket>(NewMessageReceived)));
+                    //theClients.Add(new Clients(serverSocket.Accept(), new Action<string, Socket>(NewMessageReceived)));
+                    theClients.Add(new Clients(serverSocket.Accept()));
                 }
                 catch (Exception e)
                 {
@@ -48,16 +49,14 @@ namespace Example_1_Server.TheServer
             }
         }
 
-        private void NewMessageReceived(string message, Socket senderSocket)
+        //public void NewMessageReceived(string message, Socket senderSocket)
+        public void NewMessageReceived(string message)
         {
             GuiUpdater(message);
 
             foreach (var item in theClients)
             {
-                if (item.ClientSocket != senderSocket)
-                {
-                    item.Send(message);
-                }
+                item.Send(message);
             }
         }
     

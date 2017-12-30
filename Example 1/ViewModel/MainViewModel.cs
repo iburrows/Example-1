@@ -79,11 +79,12 @@ namespace Example_1_Server.ViewModel
                 string button = "button 1";
                 DateTime time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                 StatusInfoVM item = new StatusInfoVM(button, color, time);
-                HistoryCollection.Add(item);
-                ChangeNumber_1();
+                //HistoryCollection.Add(item);
+                //ChangeNumber_1();
 
-                client.Send(button + "," + color + "," + time.ToString());
-
+                //client.Send(button + "," + color + "," + time.ToString());
+                server.NewMessageReceived(button + "," + color + "," + time.ToString());
+                
             },()=> { return !toggle; });
 
             ToggleBtnClicked_2 = new RelayCommand(() =>
@@ -92,10 +93,11 @@ namespace Example_1_Server.ViewModel
                 string button = "button 2";
                 DateTime time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                 StatusInfoVM item = new StatusInfoVM(button, color, time);
-                HistoryCollection.Add(item);
-                ChangeNumber_2();
+                //HistoryCollection.Add(item);
+                //ChangeNumber_2();
 
-                client.Send(button + "," + color + "," + time.ToString());
+                //client.Send(button + "," + color + "," + time.ToString());
+                server.NewMessageReceived(button + "," + color + "," + time.ToString());
             }, () => { return !toggle; });
 
             ToggleBtnClicked_3 = new RelayCommand(() =>
@@ -104,10 +106,11 @@ namespace Example_1_Server.ViewModel
                 string button = "button 3";
                 DateTime time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                 StatusInfoVM item = new StatusInfoVM(button, color, time);
-                HistoryCollection.Add(item);
-                ChangeNumber_3();
+                //HistoryCollection.Add(item);
+                //ChangeNumber_3();
 
-                client.Send(button + "," + color + "," + time.ToString());
+                //client.Send(button + "," + color + "," + time.ToString());
+                server.NewMessageReceived(button + "," + color + "," + time.ToString());
             }, () => { return !toggle; });
 
             ToggleBtnClicked_4 = new RelayCommand(() =>
@@ -116,17 +119,21 @@ namespace Example_1_Server.ViewModel
                 string button = "button 4";
                 DateTime time = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
                 StatusInfoVM item = new StatusInfoVM(button, color, time);
-                HistoryCollection.Add(item);
-                ChangeNumber_4();
+                //HistoryCollection.Add(item);
+                //ChangeNumber_4();
 
-                client.Send(button + "," + color + "," + time.ToString());
+                //client.Send(button + "," + color + "," + time.ToString());
+                server.NewMessageReceived(button + "," + color + "," + time.ToString());
             }, () => { return !toggle; });
 
-            ListenBtnClicked = new RelayCommand(ActAsServer,
+            ListenBtnClicked = new RelayCommand(()=> 
+                {
+                    ActAsServer();
+                },
             ()=> { return !isConnected; }
             );
 
-            ConnectBtnClicked = new RelayCommand(ActAsClient,
+            ConnectBtnClicked = new RelayCommand(()=> { ActAsClient(); },
             ()=> { return !IsClient; });
 
             #endregion
@@ -147,7 +154,7 @@ namespace Example_1_Server.ViewModel
         {
             //server = new Server(ip, port, UpdateGuiWithNewMessage);
             //server.StartAccepting();
-            client = new Client(ip, port, new Action<string>(UpdateGuiWithNewMessage), ClientDisconnected);
+            client = new Client(ip, port, UpdateGuiWithNewMessage, ClientDisconnected);
             IsClient = true;
             isConnected = true;
             toggle = true;

@@ -18,28 +18,29 @@ namespace Example_1_Server.TheServer
             private set;
         }
 
-        public Clients(Socket socket, Action<string, Socket> action)
+        //public Clients(Socket socket, Action<string, Socket> action)
+        public Clients(Socket socket)
         {
             this.ClientSocket = socket;
-            this.action = action;
+            //this.action = action;
 
-            clientReceiveThread = new Thread(Receive);
-            clientReceiveThread.Start();
+            //clientReceiveThread = new Thread(Receive);
+            //clientReceiveThread.Start();
         }
 
-        private void Receive()
-        {
-            string message = "";
+        //private void Receive()
+        //{
+        //    string message = "";
 
-            while (true)
-            {
-                int length = ClientSocket.Receive(buffer);
-                message = Encoding.UTF8.GetString(buffer, 0, length);
+        //    while (true)
+        //    {
+        //        int length = ClientSocket.Receive(buffer);
+        //        message = Encoding.UTF8.GetString(buffer, 0, length);
 
-                action(message, ClientSocket);
-            }
+        //        action(message, ClientSocket);
+        //    }
      
-        }
+        //}
 
         public void Send(string message)
         {
