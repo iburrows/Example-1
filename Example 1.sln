@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example_1_Server", "Example 1\Example_1_Server.csproj", "{21199EFD-F38C-42FD-8716-E4132A124D76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example_1_Client", "Example_1_Client\Example_1_Client.csproj", "{6F4A3C21-A639-4CAB-948D-2B5FE4C87E2F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dummy", "Dummy\Dummy.csproj", "{F4DE9650-F0F5-4FB0-9EE7-D94ECE343990}"
 EndProject
 Global
@@ -19,9 +17,6 @@ Global
 		{21199EFD-F38C-42FD-8716-E4132A124D76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21199EFD-F38C-42FD-8716-E4132A124D76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21199EFD-F38C-42FD-8716-E4132A124D76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F4A3C21-A639-4CAB-948D-2B5FE4C87E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F4A3C21-A639-4CAB-948D-2B5FE4C87E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F4A3C21-A639-4CAB-948D-2B5FE4C87E2F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F4DE9650-F0F5-4FB0-9EE7-D94ECE343990}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F4DE9650-F0F5-4FB0-9EE7-D94ECE343990}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4DE9650-F0F5-4FB0-9EE7-D94ECE343990}.Release|Any CPU.Build.0 = Release|Any CPU
